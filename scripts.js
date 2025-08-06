@@ -6,14 +6,24 @@ for (let i = 1; i <= 256; i++) {
     container.appendChild(square);                // 3
 }
 
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 function changeColor(event) {
-    event.target.style.backgroundColor = "black";
+    event.target.style.backgroundColor = getRandomColor();
 }
 
 const sq_divs = document.querySelectorAll(".square");
 for (const sq_div of sq_divs) {
     sq_div.addEventListener("mouseenter", changeColor);
 }
+
 
 function createNewSketchPad() {
 
