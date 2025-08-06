@@ -17,10 +17,10 @@ for (let i = 1; i <= 256; i++) {
 
 function changeColor(event) {
     let co = +event.target.style.opacity;
-    if(co < 1){
+    if (co < 1) {
         co += 0.1;
     }
-   event.target.style.opacity = co;
+    event.target.style.opacity = co;
 }
 
 const sq_divs = document.querySelectorAll(".square");
@@ -31,17 +31,17 @@ for (const sq_div of sq_divs) {
 
 function createNewSketchPad() {
 
-    let size = prompt('Enter sketch pad size (e.g. 16 = 16x16).\nMax: 100');
+    let size = prompt('Enter sketch pad size (e.g. 16 = 16x16).\nMax: 100', 16);
 
     // if user cancels, exit the function
     if (size === null) return;
 
     // keep asking until it's a valid number
     size = parseInt(size);
-    while ( isNaN(size) || size <= 0 || size > 100) {
-        
+    while (isNaN(size) || size <= 0 || size > 100) {
+
         size = prompt('Make sure you are using a number between 1 and 100!');
-        if(size==null)return;
+        if (size == null) return;
         size = parseInt(size);
     }
 
@@ -62,5 +62,16 @@ function createNewSketchPad() {
     }
 }
 
-const btn = document.querySelector('button');
-btn.addEventListener('click', createNewSketchPad);
+function clearCanvas() {
+    let divs = container.querySelectorAll('div');
+    divs.forEach(d => {
+        d.style.backgroundColor = 'black';
+        d.style.opacity = '0';
+    });
+}
+
+const newBtn = document.getElementById('new');
+newBtn.addEventListener('click', createNewSketchPad);
+
+const clearBtn = document.getElementById('clear');
+clearBtn.addEventListener('click', clearCanvas);
