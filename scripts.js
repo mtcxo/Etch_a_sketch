@@ -6,17 +6,21 @@ for (let i = 1; i <= 256; i++) {
     container.appendChild(square);                // 3
 }
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+// function getRandomColor() {
+//   var letters = '0123456789ABCDEF';
+//   var color = '#';
+//   for (var i = 0; i < 6; i++) {
+//     color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// }
 
 function changeColor(event) {
-    event.target.style.backgroundColor = getRandomColor();
+    let co = +event.target.style.opacity;
+    if(co < 1){
+        co += 0.1;
+    }
+   event.target.style.opacity = co;
 }
 
 const sq_divs = document.querySelectorAll(".square");
@@ -50,7 +54,9 @@ function createNewSketchPad() {
         sq.style.flex = `0 0 calc(100% / ${size})`;
         sq.style.aspectRatio = '1 / 1';
         sq.style.boxSizing = 'border-box';
-        sq.style.border = "1px solid #ccc";
+        sq.style.backgroundColor = 'black';
+        sq.style.border = '1px solid white';
+        sq.style.opacity = 0;
         sq.addEventListener('mouseenter', changeColor);
         container.appendChild(sq);
     }
