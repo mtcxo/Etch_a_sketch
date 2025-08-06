@@ -24,8 +24,11 @@ function createNewSketchPad() {
 
     // keep asking until it's a valid number
     size = parseInt(size);
-    while (isNaN(size) || size <= 0 || size > 100) {
+    while ( isNaN(size) || size <= 0 || size > 100) {
+        
         size = prompt('Make sure you are using a number between 1 and 100!');
+        if(size==null)return;
+        size = parseInt(size);
     }
 
     container.innerHTML = ''; //clear the existing grids
